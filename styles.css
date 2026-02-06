@@ -93,7 +93,7 @@ p {
 }
 
 .logo img {
-  height: 40px;
+  height: 70px;
   width: auto;
 }
 
@@ -303,6 +303,26 @@ section {
 /* Why Section */
 .why-section {
   background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.why-section-bg-icon {
+  position: absolute;
+  font-size: 30rem;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.07;
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
 }
 
 .why-intro {
@@ -350,22 +370,9 @@ section {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
-.problem-card::before {
-  content: '✗';
-  position: absolute;
-  font-size: 8rem;
-  color: rgba(211, 47, 47, 0.08);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
-}
+
 
 .problem-card:hover {
   transform: translateY(-4px);
@@ -434,6 +441,13 @@ section {
 .purpose-emoji {
   font-size: 2rem;
   display: block;
+  flex-shrink: 0;
+}
+
+.purpose-emoji-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -517,6 +531,26 @@ section {
 /* What Section */
 .what-section {
   background-color: var(--color-gray-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.what-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.what-section-bg-icon {
+  position: absolute;
+  font-size: 30rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.07;
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
 }
 
 .what-content {
@@ -548,23 +582,10 @@ section {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.04);
-  position: relative;
-  overflow: hidden;
   text-align: center;
 }
 
-.feature-item::before {
-  content: '\2713';
-  position: absolute;
-  font-size: 6rem;
-  color: rgba(26, 135, 84, 0.08);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
-}
+
 
 .feature-item:hover {
   transform: translateY(-4px);
@@ -1050,7 +1071,7 @@ section {
 }
 
 .footer-logo {
-  height: 70px;
+  height: 90px;
   width: auto;
   margin-bottom: 1.5rem;
 }
@@ -1111,21 +1132,48 @@ section {
   .hero-image-wrapper {
     order: -1;
   }
+
+  .what-features {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-container {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
   .nav-menu {
     position: fixed;
-    top: 70px;
+    top: 0;
     left: -100%;
     width: 100%;
+    height: 100vh;
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
-    padding: 2rem;
+    padding: 5rem 2rem 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     gap: 1.5rem;
+    z-index: 999;
   }
 
   .nav-menu.active {
@@ -1134,6 +1182,23 @@ section {
 
   .nav-toggle {
     display: flex;
+    z-index: 1001;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    margin-bottom: 2.5rem;
+  }
+
+  .hero {
+    padding: calc(80px + 3rem) 0 3rem;
   }
 
   .hero-ctas {
@@ -1144,34 +1209,77 @@ section {
     width: 100%;
   }
 
-  .problems-grid,
-  .purpose-grid,
-  .who-grid,
-  .unique-grid,
-  .benefits-container {
+  .hero-highlight-box {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .hero-highlight-box strong {
+    font-size: 1.05rem;
+  }
+
+  .hero-highlight-box p {
+    font-size: 0.9rem;
+  }
+
+  /* Why section mobile */
+  .why-section-bg-icon {
+    font-size: 14rem;
+    top: 5%;
+  }
+
+  .problems-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .problems-grid .problem-card,
+  .problems-grid .problem-card:nth-child(4),
+  .problems-grid .problem-card:nth-child(5) {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .purpose-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .purpose-grid .purpose-card,
+  .purpose-grid .purpose-card:nth-child(4),
+  .purpose-grid .purpose-card:nth-child(5) {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .purpose-title {
+    font-size: 1.25rem;
+  }
+
+  /* What section mobile */
+  .what-section-bg-icon {
+    font-size: 14rem;
+  }
+
+  .what-features {
     grid-template-columns: 1fr;
   }
 
-  .footer-content {
-    grid-template-columns: 1fr;
+  .compass-info {
+    padding: 1.5rem;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
+  /* Who section mobile */
+  .who-grid {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .contact-image-wrapper {
-    min-height: 300px;
+  .who-card {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 
-  .contact-form-wrapper {
-    padding: 2rem;
-  }
-
-  .contact-form-wrapper .section-title {
-    text-align: center;
-  }
-
+  /* How section mobile */
   .step {
     padding-left: 2rem;
     margin-left: 1.5rem;
@@ -1184,8 +1292,76 @@ section {
     font-size: 1rem;
   }
 
-  section {
-    padding: 5rem 0;
+  /* Unique section mobile */
+  .unique-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .unique-grid .unique-card,
+  .unique-grid .unique-card:nth-child(n+5) {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Benefits mobile */
+  .benefits-container {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-group {
+    padding: 2rem;
+  }
+
+  /* Testimonials mobile */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact mobile */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-image-wrapper {
+    min-height: 280px;
+  }
+
+  .contact-form-wrapper {
+    padding: 2rem;
+  }
+
+  .contact-form-wrapper .section-title {
+    text-align: center;
+  }
+
+  /* Footer mobile */
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-logo {
+    height: 70px;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+  }
+
+  /* Philosophy mobile */
+  .philosophy-text p {
+    font-size: 1.15rem;
+  }
+
+  .philosophy-text .highlight {
+    font-size: 1.3rem;
   }
 }
 
